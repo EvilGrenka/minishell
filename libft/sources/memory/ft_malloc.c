@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 00:09:35 by rnoriko           #+#    #+#             */
-/*   Updated: 2021/10/20 04:05:06 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/01/26 14:53:19 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/01/26 15:59:26 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+int	ft_malloc(void **dst, size_t size)
 {
-	unsigned int	num;
-
-	num = 0;
-	if (!s || !f)
-		return ;
-	while (*s)
-		f(num++, s++);
+	*dst = ft_calloc(size, 1);
+	if (*dst == NULL)
+		return (0);
+	return (1);
 }

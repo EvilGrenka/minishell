@@ -5,51 +5,153 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/04/25 13:35:32 by rnoriko           #+#    #+#              #
-#    Updated: 2021/10/20 02:12:46 by rnoriko          ###   ########.fr        #
+#    Created: 2022/01/26 16:01:12 by rnoriko           #+#    #+#              #
+#    Updated: 2022/01/26 17:10:46 by rnoriko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-INC				=	libft.h
+NAME = libft.a
 
-SRCS			=	ft_isalnum.c ft_isprint.c ft_memcmp.c \
-					ft_strlcat.c ft_strncmp.c  ft_atoi.c ft_isalpha.c \
-					ft_memcpy.c ft_strchr.c  ft_strlcpy.c \
-					ft_strnstr.c ft_tolower.c ft_bzero.c ft_isascii.c ft_memccpy.c \
-					ft_memmove.c ft_strdup.c  ft_strlen.c  ft_strrchr.c \
-					ft_toupper.c ft_calloc.c  ft_isdigit.c ft_memchr.c  ft_memset.c \
-					ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c \
-					ft_strmapi.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
-					ft_putnbr_fd.c ft_striteri.c
+AR = ar
+ARFLAGS = crs
 
-OBJS			= $(SRCS:.c=.o)
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
 
-BONUS			=	ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
-					ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
-					ft_lstmap.c
+RM = rm
+RMFLAGS = -rf
 
-BONUS_OBJS		= $(BONUS:.c=.o)
+INC_DIR = includes
+SRC_DIR = sources
+OBJ_DIR = objects
 
-CC				= clang
-RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror -I.
+HEADERS = $(addprefix $(INC_DIR)/, \
+	libft.h		\
+	ft_list.h 	\
+	ft_string.h	\
+	ft_write.h	\
+	ft_math.h	\
+	ft_type.h	\
+	ft_memory.h	\
+)
 
-NAME			= libft.a
+SRC_LIST_DIR = $(SRC_DIR)/list
+SRC_LIST = $(addprefix $(SRC_LIST_DIR)/, \
+	ft_lstadd_back.c	\
+	ft_lstadd_front.c	\
+	ft_lstclear.c		\
+	ft_lstdelone.c		\
+	ft_lstiter.c		\
+	ft_lstlast.c		\
+	ft_lstmap.c			\
+	ft_lstnew.c			\
+	ft_lstsize.c		\
+	ft_lstsort.c		\
+	ft_list_to_array.c	\
+)
 
-all:			$(NAME)
+SRC_MATH_DIR = $(SRC_DIR)/math
+SRC_MATH = $(addprefix $(SRC_MATH_DIR)/, \
+	ft_pow.c	\
+	ft_max.c	\
+)
 
-$(NAME):		$(OBJS) $(INC)
-				ar rcs $(NAME) $(OBJS)
+SRC_MEMORY_DIR = $(SRC_DIR)/memory
+SRC_MEMORY = $(addprefix $(SRC_MEMORY_DIR)/, \
+	ft_bzero.c		\
+	ft_calloc.c		\
+	ft_memccpy.c	\
+	ft_memchr.c		\
+	ft_memcmp.c		\
+	ft_memcpy.c		\
+	ft_memmove.c	\
+	ft_memset.c		\
+	ft_malloc.c		\
+)
 
-bonus:			$(OBJS) $(BONUS_OBJS)
-				ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+SRC_STRING_DIR = $(SRC_DIR)/strings
+SRC_STRING = $(addprefix $(SRC_STRING_DIR)/, \
+	ft_atoi.c		\
+	ft_itoa.c		\
+	ft_split.c		\
+	ft_strchr.c		\
+	ft_strdup.c		\
+	ft_strjoin.c	\
+	ft_strlcat.c	\
+	ft_strlcpy.c	\
+	ft_strlen.c		\
+	ft_strmapi.c	\
+	ft_strcmp.c		\
+	ft_strncmp.c	\
+	ft_strndup.c	\
+	ft_strnstr.c	\
+	ft_strrchr.c	\
+	ft_strtrim.c	\
+	ft_substr.c		\
+)
 
-clean:
-				$(RM) $(OBJS) $(BONUS_OBJS)
+SRC_TYPE_DIR = $(SRC_DIR)/type
+SRC_TYPE = $(addprefix $(SRC_TYPE_DIR)/, \
+	ft_isalnum.c	\
+	ft_isalpha.c	\
+	ft_isascii.c	\
+	ft_isdigit.c	\
+	ft_isprint.c	\
+	ft_tolower.c	\
+	ft_toupper.c	\
+	ft_iseven.c		\
+)
 
-fclean:			clean
-				$(RM) $(NAME)
+SRC_WRITE_DIR = $(SRC_DIR)/write
+SRC_WRITE = $(addprefix $(SRC_WRITE_DIR)/, \
+	ft_putchar_fd.c	\
+	ft_putendl_fd.c	\
+	ft_putnbr_fd.c	\
+	ft_putstr_fd.c	\
+)
 
-re:				fclean $(NAME)
+SRCS = \
+	$(SRC_LIST)		\
+	$(SRC_MATH)		\
+	$(SRC_MEMORY)	\
+	$(SRC_STRING)	\
+	$(SRC_TYPE)		\
+	$(SRC_WRITE)	
 
-.PHONY:			all clean fclean re bonus
+vpath %.c \
+	$(SRC_DIR)			\
+	$(SRC_LIST_DIR)		\
+	$(SRC_MATH_DIR)		\
+	$(SRC_MEMORY_DIR)	\
+	$(SRC_STRING_DIR)	\
+	$(SRC_TYPE_DIR)		\
+	$(SRC_WRITE_DIR)	
+
+OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
+
+
+all : $(NAME)
+
+clean :
+	@$(RM) $(RMFLAGS) $(OBJS)
+	@$(RM) $(RMFLAGS) $(OBJ_DIR)
+	@printf "🧹 Cleaning $(NAME)'s Object files...\n"
+
+fclean : clean
+	@$(RM) $(RMFLAGS) $(NAME)
+	@printf "🧹 Cleaning $(NAME)\n"
+
+re : fclean all
+
+$(OBJ_DIR)/%.o : %.c
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CDEBUG) $(CFLAGS) -I $(INC_DIR) -c $< -o $@
+	@printf "🔮 Create $@ from $<\n"
+
+$(NAME) : $(HEADERS) $(OBJS)
+	@printf "🪧 Successfully Created $(NAME)'s Object files!\n"
+	@printf "📜 Archiving! $@\n"
+	@$(AR) $(ARFLAGS) $@ $(OBJS)
+	@printf "🧶 Successfully Archived $@!\n"
+
+.PHONY: all clean fclean re

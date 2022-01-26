@@ -6,7 +6,7 @@
 #    By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 12:38:13 by rnoriko           #+#    #+#              #
-#    Updated: 2022/01/26 13:31:40 by rnoriko          ###   ########.fr        #
+#    Updated: 2022/01/26 17:11:13 by rnoriko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CC = clang
 CFLAGS = -Wall -Wextra -Werror
 
 RM = rm
-RMFLAGS = -f
+RMFLAGS = -rf
 
 SRC_DIR = sources
 INC_DIR = includes
@@ -41,6 +41,7 @@ clean :
 
 fclean : clean
 	@$(RM) $(RMFLAGS) $(NAME)
+	@$(RM) $(RMFLAGS) $(OBJ_DIR)
 	@printf "🧹 Cleaning $(NAME)\n"
 
 re : fclean all
@@ -48,12 +49,12 @@ re : fclean all
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -I $(INC_DIR) -c $< -o $@
-	@printf "🚧 Create $@ from $<\n"
+	@printf "🔮 Create $@ from $<\n"
 
 $(NAME) : $(HEADERS) $(OBJS)
-	@printf "🚀 Successfully Created $(NAME)'s Object files!\n"
-	@printf "📚 Archiving! $@\n"
+	@printf "🪧 Successfully Created $(NAME)'s Object files!\n"
+	@printf "📜 Archiving! $@\n"
 	@$(AR) $(ARFLAGS) $@ $(OBJS)
-	@printf "🎉 Successfully Archived $@!\n"
+	@printf "🧶 Successfully Archived $@!\n"
 
 .PHONY: all clean fclean re
