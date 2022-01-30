@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   exit_minshell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 18:43:22 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/30 21:08:24 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/01/30 21:43:41 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/01/30 21:43:42 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "minishell.h"
 
-# include "ft_dlist.h"
-# include "ft_list.h"
-# include "ft_math.h"
-# include "ft_memory.h"
-# include "ft_string.h"
-# include "ft_type.h"
-# include "ft_write.h"
+static void	free_cmd_history(t_history	*cmd)
+{
+	t_history	*tmp;
 
-#endif
+	while (cmd)
+	{
+		tmp = cmd->prev;
+		ft_free(cmd->cmd);
+		ft_free(cmd->edit_cmd);
+		ft_free(cmd);
+		cmd = tmp;
+	}
+}
+
+void	exit_minishell(int exitcode)
+{
+	ft_lstclear(&g_sh.envp, ft_free);
+	free_cmd_history(g_sh.cmd);
+	exit(exitcode);
+}

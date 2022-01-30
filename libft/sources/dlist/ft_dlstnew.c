@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_dlstnew.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 18:43:22 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/30 21:08:24 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/01/30 20:05:11 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/01/30 20:06:34 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include "ft_dlist.h"
-# include "ft_list.h"
-# include "ft_math.h"
-# include "ft_memory.h"
-# include "ft_string.h"
-# include "ft_type.h"
-# include "ft_write.h"
+t_dlist	*ft_dlstnew(void	*content)
+{
+	t_dlist	*lst;
 
-#endif
+	lst = malloc(sizeof(t_dlist));
+	if (lst == NULL)
+		return (0);
+	lst->next = 0;
+	lst->prev = 0;
+	lst->content = content;
+	return (lst);
+}

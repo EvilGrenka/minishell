@@ -6,7 +6,7 @@
 #    By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 16:01:12 by rnoriko           #+#    #+#              #
-#    Updated: 2022/01/26 17:10:46 by rnoriko          ###   ########.fr        #
+#    Updated: 2022/01/31 00:50:27 by rnoriko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,17 @@ HEADERS = $(addprefix $(INC_DIR)/, \
 	ft_memory.h	\
 )
 
+SRC_DLIST_DIR = $(SRC_DIR)/dlist
+SRC_DLIST = $(addprefix $(SRC_DLIST_DIR)/, \
+	ft_dlstadd_back.c	\
+	ft_dlstadd_front.c	\
+	ft_dlstclear.c		\
+	ft_dlstdelone.c		\
+	ft_dlstlast.c		\
+	ft_dlstnew.c		\
+	ft_dlstsize.c		\
+)
+
 SRC_LIST_DIR = $(SRC_DIR)/list
 SRC_LIST = $(addprefix $(SRC_LIST_DIR)/, \
 	ft_lstadd_back.c	\
@@ -60,6 +71,8 @@ SRC_MEMORY_DIR = $(SRC_DIR)/memory
 SRC_MEMORY = $(addprefix $(SRC_MEMORY_DIR)/, \
 	ft_bzero.c		\
 	ft_calloc.c		\
+	ft_free_ret.c 	\
+	ft_free.c 		\
 	ft_memccpy.c	\
 	ft_memchr.c		\
 	ft_memcmp.c		\
@@ -74,8 +87,10 @@ SRC_STRING = $(addprefix $(SRC_STRING_DIR)/, \
 	ft_atoi.c		\
 	ft_itoa.c		\
 	ft_split.c		\
+	ft_strappendc.c \
 	ft_strchr.c		\
 	ft_strdup.c		\
+	ft_strjoin_free.c \
 	ft_strjoin.c	\
 	ft_strlcat.c	\
 	ft_strlcpy.c	\
@@ -83,9 +98,11 @@ SRC_STRING = $(addprefix $(SRC_STRING_DIR)/, \
 	ft_strmapi.c	\
 	ft_strcmp.c		\
 	ft_strncmp.c	\
+	ft_strndup_move.c \
 	ft_strndup.c	\
 	ft_strnstr.c	\
 	ft_strrchr.c	\
+	ft_strskip.c	\
 	ft_strtrim.c	\
 	ft_substr.c		\
 )
@@ -111,6 +128,7 @@ SRC_WRITE = $(addprefix $(SRC_WRITE_DIR)/, \
 )
 
 SRCS = \
+	$(SRC_DLIST)	\
 	$(SRC_LIST)		\
 	$(SRC_MATH)		\
 	$(SRC_MEMORY)	\
@@ -120,6 +138,7 @@ SRCS = \
 
 vpath %.c \
 	$(SRC_DIR)			\
+	$(SRC_DLIST_DIR)	\
 	$(SRC_LIST_DIR)		\
 	$(SRC_MATH_DIR)		\
 	$(SRC_MEMORY_DIR)	\
@@ -135,23 +154,23 @@ all : $(NAME)
 clean :
 	@$(RM) $(RMFLAGS) $(OBJS)
 	@$(RM) $(RMFLAGS) $(OBJ_DIR)
-	@printf "🧹 Cleaning $(NAME)'s Object files...\n"
+	@printf "🧹 Delete $(NAME)'s object files...\n"
 
 fclean : clean
 	@$(RM) $(RMFLAGS) $(NAME)
-	@printf "🧹 Cleaning $(NAME)\n"
+	@printf "🧹 $(NAME) archive was deleted!\n"
 
 re : fclean all
 
 $(OBJ_DIR)/%.o : %.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CDEBUG) $(CFLAGS) -I $(INC_DIR) -c $< -o $@
-	@printf "🔮 Create $@ from $<\n"
+	@printf "\e[1K\r🔮 Create $@ from $<"
 
 $(NAME) : $(HEADERS) $(OBJS)
-	@printf "🪧 Successfully Created $(NAME)'s Object files!\n"
-	@printf "📜 Archiving! $@\n"
+	@printf "\n🪧 $(NAME)'s object files was created!\n"
+	@printf "📜 Archiving $@!\n"
 	@$(AR) $(ARFLAGS) $@ $(OBJS)
-	@printf "🧶 Successfully Archived $@!\n"
+	@printf "🧶 Archive $@ successfully was created!\n"
 
 .PHONY: all clean fclean re

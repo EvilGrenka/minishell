@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   cursor_ctrl_left.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 18:43:22 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/30 21:08:24 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/01/30 19:30:12 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/01/30 19:30:13 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "minishell.h"
 
-# include "ft_dlist.h"
-# include "ft_list.h"
-# include "ft_math.h"
-# include "ft_memory.h"
-# include "ft_string.h"
-# include "ft_type.h"
-# include "ft_write.h"
-
-#endif
+void	cursor_ctrl_left(void)
+{
+	while (g_sh.cmd_i > 0 && g_sh.line[g_sh.cmd_i - 1] == ' ')
+	{
+		cursor_left();
+		--g_sh.cmd_i;
+	}
+	while (g_sh.cmd_i > 0 && g_sh.line[g_sh.cmd_i - 1] != ' ')
+	{
+		cursor_left();
+		--g_sh.cmd_i;
+	}
+}

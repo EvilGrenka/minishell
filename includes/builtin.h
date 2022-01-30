@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 18:43:22 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/30 21:08:24 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/01/29 15:31:03 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/01/30 19:13:11 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef BUILTIN_H
+# define BUILTIN_H
 
-# include "ft_dlist.h"
-# include "ft_list.h"
-# include "ft_math.h"
-# include "ft_memory.h"
-# include "ft_string.h"
-# include "ft_type.h"
-# include "ft_write.h"
+#include "minishell.h"
+
+int		compare(t_list *a, t_list *b);
+int		ft_cd(t_list *args);
+int		ft_echo(t_list *args);
+int		ft_env(void);
+int		ft_exit(t_list *args);
+int		ft_export(t_list *args);
+int		ft_pwd(void);
+int		ft_unset(t_list *args);
 
 #endif

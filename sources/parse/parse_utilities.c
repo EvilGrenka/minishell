@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 18:43:22 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/30 21:08:24 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/01/29 14:45:20 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/01/30 21:37:41 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "minishell.h"
 
-# include "ft_dlist.h"
-# include "ft_list.h"
-# include "ft_math.h"
-# include "ft_memory.h"
-# include "ft_string.h"
-# include "ft_type.h"
-# include "ft_write.h"
+void	print_parse_err(t_list *err)
+{
+	if (err == (t_list *)PARSE_MALLOC)
+		ft_putstr_fd(PARSE_MALLOC_MSG, 2);
+	if (err == (t_list *)PARSE_UNEXPECT)
+		ft_putstr_fd(PARSE_UNEXPECT_MSG, 2);
+	if (err == (t_list *)PARSE_INVAILD)
+		ft_putstr_fd(PARSE_INVAILD_MSG, 2);
+}
 
-#endif
+void	print_depth(int depth)
+{
+	while (depth--)
+		printf("\t");
+}

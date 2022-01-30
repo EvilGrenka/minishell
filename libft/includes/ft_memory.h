@@ -6,7 +6,7 @@
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 15:43:17 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/26 15:46:49 by rnoriko          ###   ########.fr       */
+/*   Updated: 2022/01/30 22:46:00 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
+void	*ft_free_ret(void *target, void *ret);
+void	ft_free(void *target);
 int		ft_malloc(void **dst, size_t size);
 void	*ft_memccpy(void *destination, const void *source, int c, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
