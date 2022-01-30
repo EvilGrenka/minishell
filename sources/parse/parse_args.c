@@ -6,13 +6,13 @@
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 15:39:10 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/27 15:39:45 by rnoriko          ###   ########.fr       */
+/*   Updated: 2022/01/31 02:02:05 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_list	*destrocter(t_list *result, t_list *ret)
+static t_list	*destructor(t_list *result, t_list *ret)
 {
 	if (result)
 		ft_lstclear(&result, ft_free);
@@ -41,7 +41,7 @@ t_list	*parse_arg(t_list *args)
 	while (args)
 	{
 		if (new_arg(curr, args->content) == -1)
-			return (destrocter(result, PARSE_MALLOC));
+			return (destructor(result, PARSE_MALLOC));
 		args = args->next;
 		curr = &(*curr)->next;
 	}
