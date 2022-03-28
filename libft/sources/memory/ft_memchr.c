@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/25 11:29:09 by rnoriko           #+#    #+#             */
-/*   Updated: 2021/10/20 04:00:57 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:29:03 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:29:05 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*local_s;
+	const unsigned char	*ptr;
 
-	local_s = (unsigned char *)s;
-	while (n--)
+	ptr = (const unsigned char *)s;
+	while (n-- > 0)
 	{
-		if (*local_s == (unsigned char)(c))
-			return (local_s);
-		local_s++;
+		if (*ptr == (unsigned char)c)
+			return ((void *)ptr);
+		ptr++;
 	}
-	return (NULL);
+	return (0);
 }

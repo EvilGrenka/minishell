@@ -6,7 +6,7 @@
 #    By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 16:01:12 by rnoriko           #+#    #+#              #
-#    Updated: 2022/01/31 00:50:27 by rnoriko          ###   ########.fr        #
+#    Updated: 2022/03/28 12:02:19 by rnoriko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = libft.a
 AR = ar
 ARFLAGS = crs
 
-CC = gcc
+CC = clang
 CFLAGS = -Wall -Wextra -Werror
 
 RM = rm
@@ -26,8 +26,12 @@ SRC_DIR = sources
 OBJ_DIR = objects
 
 HEADERS = $(addprefix $(INC_DIR)/, \
+	ft_lst_type.h	\
+	ft_d_lst.h 	\
+	ft_d_lst.h 	\
 	libft.h		\
 	ft_list.h 	\
+	ft_lst_type.h	\
 	ft_string.h	\
 	ft_write.h	\
 	ft_math.h	\
@@ -37,13 +41,13 @@ HEADERS = $(addprefix $(INC_DIR)/, \
 
 SRC_DLIST_DIR = $(SRC_DIR)/dlist
 SRC_DLIST = $(addprefix $(SRC_DLIST_DIR)/, \
-	ft_dlstadd_back.c	\
-	ft_dlstadd_front.c	\
-	ft_dlstclear.c		\
-	ft_dlstdelone.c		\
-	ft_dlstlast.c		\
-	ft_dlstnew.c		\
-	ft_dlstsize.c		\
+	ft_d_lstadd_back.c	\
+	ft_d_lstadd_front.c	\
+	ft_d_lstclear.c		\
+	ft_d_lstdelone.c		\
+	ft_d_lstlast.c		\
+	ft_d_lstnew.c		\
+	ft_d_lstsize.c		\
 )
 
 SRC_LIST_DIR = $(SRC_DIR)/list
@@ -58,7 +62,7 @@ SRC_LIST = $(addprefix $(SRC_LIST_DIR)/, \
 	ft_lstnew.c			\
 	ft_lstsize.c		\
 	ft_lstsort.c		\
-	ft_list_to_array.c	\
+	ft_lst_to_array.c	\
 )
 
 SRC_MATH_DIR = $(SRC_DIR)/math
@@ -86,6 +90,7 @@ SRC_STRING_DIR = $(SRC_DIR)/strings
 SRC_STRING = $(addprefix $(SRC_STRING_DIR)/, \
 	ft_atoi.c		\
 	ft_itoa.c		\
+	ft_split_cnt.c	\
 	ft_split.c		\
 	ft_strappendc.c \
 	ft_strchr.c		\

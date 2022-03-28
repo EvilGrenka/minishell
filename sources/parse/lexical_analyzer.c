@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/27 15:29:41 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/27 15:33:00 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:42:17 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:42:18 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 static t_list	*destructor(t_list *result, void *err)
 {

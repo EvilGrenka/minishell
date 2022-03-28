@@ -5,21 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/30 19:22:44 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/31 01:38:03 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:18:55 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:19:34 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CURSOR_H
 # define CURSOR_H
 
-void	clear_line(void);
-void	cursor_ctrl_left(void);
-void	cursor_ctrl_right(void);
+# include "minishell.h"
+
+int		putchar_tc(int tc);
+void	delete_line(void);
+void	delete_char(void);
 void	cursor_left(void);
 void	cursor_right(void);
-void	delete_char(void);
-void	delete_line(void);
-int		putchar_tc(int tc);
+void	cursor_ctrl_left(void);
+void	cursor_ctrl_right(void);
+void	clear_line(void);
 
 #endif

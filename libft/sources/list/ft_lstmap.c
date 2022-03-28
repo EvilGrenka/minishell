@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/29 14:10:05 by rnoriko           #+#    #+#             */
-/*   Updated: 2021/05/01 21:31:33 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:26:39 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:27:18 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,24 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new_lst;
-	t_list	*new_node;
+	t_list	*result;
+	t_list	*curr;
 
-	if (!lst || !f)
-		return (NULL);
-	new_lst = NULL;
+	result = ft_lstnew(f(lst->content));
+	if (result == NULL)
+		return (0);
+	curr = result;
+	lst = lst->next;
 	while (lst)
 	{
-		new_node = ft_lstnew(f(lst->content));
-		if (!new_node)
+		curr->next = ft_lstnew(f(lst->content));
+		if (curr->next == NULL)
 		{
-			ft_lstclear(&new_lst, del);
-			return (NULL);
+			ft_lstclear(&result, del);
+			return (0);
 		}
-		ft_lstadd_back(&new_lst, new_node);
+		curr = curr->next;
 		lst = lst->next;
 	}
-	return (new_lst);
+	return (result);
 }

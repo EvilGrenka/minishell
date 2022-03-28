@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/30 21:12:35 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/30 21:26:15 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 20:22:17 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/28 13:43:30 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,12 @@ static char	*append_char(char *line, char c)
 	i = g_sh.cmd_s - g_sh.cmd_i;
 	while (i--)
 		cursor_left();
-	(++g_sh.cmd_i && ++g_sh.cmd_s);
+	++g_sh.cmd_i;
+	++g_sh.cmd_s;
 	return (result);
 }
 
-static void	setup_line(void)
+void	setup_line(void)
 {
 	t_history	*history;
 
@@ -83,7 +84,7 @@ static void	setup_line(void)
 	g_sh.history = g_sh.cmd;
 }
 
-static int	check_EOF(int keycode)
+static int	check_eof(int keycode)
 {
 	if (is_eof(keycode) && (g_sh.line == NULL || !*g_sh.line))
 	{
@@ -105,7 +106,7 @@ void	get_line(void)
 	!(g_sh.cmd_s = 0) && !(g_sh.eof = 0) && (c = getch()));
 	while (c != (int) '\n')
 	{
-		if (check_EOF(c) || (g_sh.signal == SIGINT && g_sh.isps2))
+		if (check_eof(c) || (g_sh.signal == SIGINT && g_sh.isps2))
 			break ;
 		if (is_special_key(c))
 			handle_key_input(c);

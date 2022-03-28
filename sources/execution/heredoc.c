@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   here_doc.c                                         :+:      :+:    :+:   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/30 20:33:07 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/30 20:33:30 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:41:23 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/28 13:42:23 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	ps2(int	out)
+static void	ps2(int out)
 {
-	print_PS2();
+	print_ps2();
 	get_line();
 	if (g_sh.line)
 		write(out, g_sh.line, ft_strlen(g_sh.line));

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/29 15:41:33 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/29 15:42:11 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:37:33 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:37:34 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,11 @@ static int	pwd_store(void)
 
 static int	cd_home_dir(void)
 {
-	int		status;
 	char	*path;
 
 	path = get_envp_value("HOME");
 	if (path == NULL)
 		return (MALLOC_FAIL);
-	status = chdir(path);
 	free(path);
 	return (SUCCESS);
 }

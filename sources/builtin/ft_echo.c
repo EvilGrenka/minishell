@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/29 15:58:44 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/29 15:59:47 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:37:41 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:37:42 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
 int	ft_echo(t_list *args)
 {

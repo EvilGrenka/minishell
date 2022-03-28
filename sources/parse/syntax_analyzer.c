@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/27 15:31:55 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/27 15:33:10 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 20:21:42 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/28 13:38:07 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ static t_list	*destructor(t_AST *AST, t_list *ASTs, t_list *token)
 {
 	free_token(token);
 	if (ASTs)
-		ft_lstclear(&ASTs, free_AST);
+		ft_lstclear(&ASTs, free_ast);
 	if (AST)
-		free_AST(AST);
+		free_ast(AST);
 	return (PARSE_MALLOC);
 }
 
 static int	analyzer(t_list *curr_token, t_list **curr)
 {
-	t_AST	*AST;
+	t_AST	*ast;
 
 	while (curr_token)
 	{
@@ -47,8 +47,8 @@ static int	analyzer(t_list *curr_token, t_list **curr)
 			curr_token = curr_token->next;
 		if (curr_token == NULL)
 			break ;
-		AST = syntax_AST(&curr_token);
-		(*curr)->next = ft_lstnew(AST);
+		ast = syntax_ast(&curr_token);
+		(*curr)->next = ft_lstnew(ast);
 		if ((*curr)->next == NULL)
 			return (0);
 		*curr = (*curr)->next;
@@ -59,21 +59,21 @@ static int	analyzer(t_list *curr_token, t_list **curr)
 t_list	*syntax_analyzer(t_list *token)
 {
 	t_list	*curr_token;
-	t_list	*ASTs;
+	t_list	*asts;
 	t_list	*curr;
-	t_AST	*AST;
+	t_AST	*ast;
 
 	curr_token = token;
-	ASTs = NULL;
-	AST = syntax_AST(&curr_token);
-	if (AST == NULL)
-		destructor(AST, ASTs, token);
-	ASTs = ft_lstnew(AST);
-	if (ASTs == NULL)
-		destructor(AST, ASTs, token);
-	curr = ASTs;
+	asts = NULL;
+	ast = syntax_ast(&curr_token);
+	if (ast == NULL)
+		destructor(ast, asts, token);
+	asts = ft_lstnew(ast);
+	if (asts == NULL)
+		destructor(ast, asts, token);
+	curr = asts;
 	if (!analyzer(curr_token, &curr))
-		return (destructor(AST, ASTs, token));
+		return (destructor(ast, asts, token));
 	free_token(token);
-	return (ASTs);
+	return (asts);
 }

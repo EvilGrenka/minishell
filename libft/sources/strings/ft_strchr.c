@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/23 17:29:24 by rnoriko           #+#    #+#             */
-/*   Updated: 2021/10/20 16:26:28 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:31:15 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:31:16 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s)
+	while (*s != c)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
+		if (*s == '\0')
+			return (0);
 		s++;
 	}
-	if ((char)c == '\0')
-		return ((char *)s);
-	return (NULL);
+	return ((char *)s);
 }

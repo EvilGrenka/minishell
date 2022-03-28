@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/27 15:25:27 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/27 15:28:35 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:42:50 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:42:56 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
 t_list	*parse_line(char *line)
 {

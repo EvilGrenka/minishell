@@ -5,19 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 18:39:10 by rnoriko           #+#    #+#             */
-/*   Updated: 2021/10/20 02:29:31 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:29:43 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:29:43 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	unsigned char	*local_b;
+	unsigned char	*ptr;
 
-	local_b = b;
-	while (len--)
-		*local_b++ = (unsigned char)c;
-	return (b);
+	ptr = s;
+	while (n-- > 0)
+	{
+		*ptr++ = c;
+	}
+	return (s);
 }

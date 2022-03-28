@@ -5,41 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/31 01:34:58 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/31 01:35:09 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:41:52 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:41:53 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	clear_redire_io(t_check *g)
-{
-	if (g->fd_in > 0)
-		close(g->fd_in);
-	if (g->fd_out > 0)
-		close(g->fd_out);
-}
-
-static int	redir_connect_dup(int *redir_fd, int *save, int is_red_in)
-{
-	int	status;
-
-	status = 0;
-	close(*redir_fd);
-	if (*save != -1)
-	{
-		if (is_red_in)
-			status = dup2(*save, STDIN_FILENO);
-		else
-			status = dup2(*save, STDOUT_FILENO);
-		if (status < 0)
-			return (DUP_ERROR);
-		close(*save);
-		*save = -1;
-	}
-	*redir_fd = 0;
-	return (status);
-}
 
 int	ft_redir_connect(t_check *g, int is_dup)
 {
@@ -68,6 +39,27 @@ int	ft_redir_connect(t_check *g, int is_dup)
 	return (SUCCESS);
 }
 
+static int	redir_connect_dup(int *redir_fd, int *save, int is_red_in)
+{
+	int	status;
+
+	status = 0;
+	close(*redir_fd);
+	if (*save != -1)
+	{
+		if (is_red_in)
+			status = dup2(*save, STDIN_FILENO);
+		else
+			status = dup2(*save, STDOUT_FILENO);
+		if (status < 0)
+			return (DUP_ERROR);
+		close(*save);
+		*save = -1;
+	}
+	*redir_fd = 0;
+	return (status);
+}
+
 int	ft_redir_close(t_check *g)
 {
 	int	status;
@@ -80,6 +72,14 @@ int	ft_redir_close(t_check *g)
 	if (g->fd_out > 0)
 		status = redir_connect_dup(&(g->fd_out), &(g->save_out), 0);
 	return (status);
+}
+
+static void	clear_redire_io(t_check *g)
+{
+	if (g->fd_in > 0)
+		close(g->fd_in);
+	if (g->fd_out > 0)
+		close(g->fd_out);
 }
 
 int	ft_redir_exec(t_redirect *redir, t_check *g)
@@ -108,5 +108,5 @@ int	ft_redir_exec(t_redirect *redir, t_check *g)
 			ft_error_print("open fail", NULL, strerror(errno));
 		return (-1);
 	}
-	return (exec_tree_parser(redir->AST, g));
+	return (exec_tree_parser(redir->ast, g));
 }

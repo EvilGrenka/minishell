@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/28 00:01:41 by rnoriko           #+#    #+#             */
-/*   Updated: 2021/04/30 16:00:08 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:36:26 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:36:30 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,9 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	if (n == -2147483648)
-	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putchar_fd('8', fd);
-	}
-	else if (n < 0)
-	{
-		ft_putchar_fd('-', fd);
-		ft_putnbr_fd(-n, fd);
-	}
-	else
-	{
-		if (n / 10)
-			ft_putnbr_fd(n / 10, fd);
-		ft_putchar_fd((n % 10) + '0', fd);
-	}
+	char	*num;
+
+	num = ft_itoa(n);
+	ft_putstr_fd(num, fd);
+	free(num);
 }

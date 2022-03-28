@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/30 20:43:01 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/30 20:43:03 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:40:26 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/28 13:39:13 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ int	builtin_parser(t_cmd *cmds, t_check *g)
 		status = builtin_cmd_set(result, g);
 	else
 		status = builtin_pipe_set(result, g);
-	free_CMD(result);
+	free_cmd(result);
 	return (status);
 }

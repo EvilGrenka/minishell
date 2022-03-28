@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/30 21:44:32 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/31 02:17:32 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/28 12:15:53 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/28 13:57:48 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@ t_minishell	g_sh;
 
 static void	minishell(void)
 {
-	t_list	*ASTs;
+	t_list	*asts;
 
 	g_sh.signal = 0;
-	print_PS1();
+	print_ps1();
 	get_line();
 	if (g_sh.line == NULL)
 		return ;
-	ASTs = parse_line(g_sh.line);
-	if (ASTs < (t_list *)PARSE_ERROR_COUNT)
-		print_parse_err(ASTs);
+	asts = parse_line(g_sh.line);
+	if (asts < (t_list *)PARSE_ERROR_COUNT)
+		print_parse_err(asts);
 	else
 	{
-		exec_cmd(ASTs);
-		ft_lstclear(&ASTs, free_AST);
+		exec_cmd(asts);
+		ft_lstclear(&asts, free_ast);
 	}
 }
 

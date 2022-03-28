@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/25 11:45:57 by rnoriko           #+#    #+#             */
-/*   Updated: 2021/10/20 04:05:39 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:29:14 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:29:15 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	const unsigned char	*local_s1;
-	const unsigned char	*local_s2;
+	const unsigned char	*s1p;
+	const unsigned char	*s2p;
 
-	local_s1 = s1;
-	local_s2 = s2;
-	if (!n)
-		return (0);
-	while (*local_s1 == *local_s2 && --n)
+	s1p = (const unsigned char *)s1;
+	s2p = (const unsigned char *)s2;
+	while (n-- > 0)
 	{
-		local_s1++;
-		local_s2++;
+		if (*s1p != *s2p)
+			return (*s1p - *s2p);
+		s1p++;
+		s2p++;
 	}
-	return (*local_s1 - *local_s2);
+	return (0);
 }

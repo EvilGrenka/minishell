@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/29 14:06:44 by rnoriko           #+#    #+#             */
-/*   Updated: 2021/04/30 16:00:35 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:26:11 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:26:20 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (!f || !lst)
-		return ;
 	while (lst)
 	{
-		(*f)(lst->content);
+		f(lst->content);
 		lst = lst->next;
 	}
 }

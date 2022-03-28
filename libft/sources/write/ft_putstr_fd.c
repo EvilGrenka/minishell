@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/27 23:51:33 by rnoriko           #+#    #+#             */
-/*   Updated: 2021/04/30 16:00:10 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:36:38 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:36:39 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	if (!s)
-		return ;
 	write(fd, s, ft_strlen(s));
 }

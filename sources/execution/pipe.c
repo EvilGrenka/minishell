@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/30 20:37:11 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/30 23:18:20 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:41:43 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/28 13:42:59 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	ft_set_pipe(t_check *g)
 	num->check = PIPE_R_ONLY;
 	if (g->pipe_fd)
 		((t_pi_fd *)(g->pipe_fd->content))->check = PIPE_R_W;
-	ft_dlstadd_back(&g->pipe_fd, ft_dlstnew(num));
+	ft_d_lstadd_back(&g->pipe_fd, ft_d_lstnew(num));
 	g->pipe_cnt++;
 	return (SUCCESS);
 }
@@ -61,15 +61,15 @@ void	ft_pipe_connect(int *status, t_check *g)
 
 void	ft_pipe_write_close(t_check *g, int check)
 {
-	t_pi_fd	*num;
-	t_dlist	*tmp;
+	t_pi_fd		*num;
+	t_d_list	*tmp;
 
 	num = (g->pipe_fd)->content;
 	close(num->pi_write);
 	if (g->redir_in != 0)
 		g->redir_in = 0;
 	tmp = (g->pipe_fd)->next;
-	ft_dlstdelone(g->pipe_fd, free_pipe);
+	ft_d_lstdelone(g->pipe_fd, free_pipe_data);
 	g->pipe_fd = tmp;
 	if (check == 1)
 	{

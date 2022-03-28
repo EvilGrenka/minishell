@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/27 23:46:26 by rnoriko           #+#    #+#             */
-/*   Updated: 2021/04/30 16:00:05 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:36:01 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:36:01 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,8 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, 1);
+	unsigned char	u_c;
+
+	u_c = c;
+	write(fd, &u_c, 1);
 }

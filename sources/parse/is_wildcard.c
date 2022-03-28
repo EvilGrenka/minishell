@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/29 14:42:07 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/29 14:42:20 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:42:11 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:42:11 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
 int	is_wildcard(char *str)
 {

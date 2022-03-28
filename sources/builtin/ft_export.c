@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/29 16:05:22 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/29 16:06:15 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:38:05 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:38:06 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "minishell.h"
 
 static void	print_error(char *env)
 {

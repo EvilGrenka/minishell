@@ -5,53 +5,53 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/29 14:51:36 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/29 15:17:04 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:42:06 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/28 13:36:14 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_CMD(t_cmd *cmd)
+void	free_cmd(t_cmd *cmd)
 {
 	ft_free(cmd->cmd);
 	ft_lstclear(&cmd->args, ft_free);
 	ft_free(cmd);
 }
 
-void	free_PIPE(t_pipe *pipe)
+void	free_pipe(t_pipe *pipe)
 {
-	free_AST(pipe->left);
-	free_AST(pipe->right);
+	free_ast(pipe->left);
+	free_ast(pipe->right);
 	ft_free(pipe);
 }
 
-void	free_CTR_OP(t_ctr_op *ctr)
+void	free_ctr_op(t_ctr_op *ctr)
 {
-	free_AST(ctr->left);
-	free_AST(ctr->right);
+	free_ast(ctr->left);
+	free_ast(ctr->right);
 	ft_free(ctr);
 }
 
-void	free_REDIRECT(t_redirect *redirect)
+void	free_redirect(t_redirect *redirect)
 {
-	free_AST(redirect->AST);
+	free_ast(redirect->ast);
 	ft_free(redirect->file);
 	ft_free(redirect);
 }
 
-void	free_AST(void *data)
+void	free_ast(void *data)
 {
-	t_AST	*AST;
+	t_AST	*ast;
 
-	AST = data;
-	if (AST->type == FT_CMD && AST->data)
-		free_CMD(AST->data);
-	else if (AST->type == FT_PIPE)
-		free_PIPE(AST->data);
-	else if (AST->type == FT_CTR_OP)
-		free_CTR_OP(AST->data);
-	else if (AST->type == FT_REDIRECT)
-		free_REDIRECT(AST->data);
-	ft_free(AST);
+	ast = data;
+	if (ast->type == FT_CMD && ast->data)
+		free_cmd(ast->data);
+	else if (ast->type == FT_PIPE)
+		free_pipe(ast->data);
+	else if (ast->type == FT_CTR_OP)
+		free_ctr_op(ast->data);
+	else if (ast->type == FT_REDIRECT)
+		free_redirect(ast->data);
+	ft_free(ast);
 }

@@ -5,27 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/22 15:22:28 by rnoriko           #+#    #+#             */
-/*   Updated: 2021/10/20 04:04:40 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:28:53 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:28:54 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./libft.h"
 
-void	*ft_memccpy(void *destination, const void *source, int c, size_t n)
+void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
-	const unsigned char	*local_source;
-	unsigned char		*local_destination;
+	unsigned char		*dp;
+	const unsigned char	*sp;
 
-	local_source = source;
-	local_destination = destination;
-	while (n--)
+	dp = dest;
+	sp = src;
+	while (n-- > 0)
 	{
-		*local_destination = *local_source;
-		if (*local_source == (unsigned char)c)
-			return (++local_destination);
-		++local_source;
-		++local_destination;
+		*dp++ = *sp++;
+		if (*dp == (unsigned char)c)
+			return (dp);
 	}
-	return (NULL);
+	return (0);
 }

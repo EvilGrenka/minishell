@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/29 14:48:00 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/29 14:48:10 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 20:21:56 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/28 13:00:18 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static t_AST	**syntax_PIPE(t_list **token, t_AST **curr)
+static t_AST	**syntax_pipe(t_list **token, t_AST **curr)
 {
 	t_AST	*result;
 	t_pipe	*pipe;
@@ -32,7 +32,7 @@ static t_AST	**syntax_PIPE(t_list **token, t_AST **curr)
 	return (&pipe->right);
 }
 
-static t_AST	**syntax_CTR_OP(t_list **token, t_AST **curr)
+static t_AST	**syntax_ctr_op(t_list **token, t_AST **curr)
 {
 	t_AST		*result;
 	t_ctr_op	*ctrop;
@@ -60,13 +60,13 @@ static t_AST	**syntax_switch(t_list **token, t_AST **curr)
 {
 	if (((t_token *)(*token)->content)->type == LX_PIPE)
 	{
-		curr = syntax_PIPE(token, curr);
+		curr = syntax_pipe(token, curr);
 		if (curr == NULL)
 			return (PARSE_MALLOC);
 	}
 	else if (((t_token *)(*token)->content)->type == LX_CTR_OP)
 	{
-		curr = syntax_CTR_OP(token, curr);
+		curr = syntax_ctr_op(token, curr);
 		if (curr == NULL)
 			return (PARSE_MALLOC);
 	}
@@ -76,7 +76,7 @@ static t_AST	**syntax_switch(t_list **token, t_AST **curr)
 	return (curr);
 }
 
-t_AST	*syntax_AST(t_list **token)
+t_AST	*syntax_ast(t_list **token)
 {
 	t_AST	*result;
 	t_AST	**curr;

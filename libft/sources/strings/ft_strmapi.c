@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/27 23:32:03 by rnoriko           #+#    #+#             */
-/*   Updated: 2021/10/20 04:27:30 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:32:32 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:32:33 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*change_s;
+	char	*result;
+	size_t	len;
 	size_t	i;
 
-	if (!s || !f)
-		return (NULL);
-	change_s = (char *) malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (!change_s)
-		return (NULL);
+	len = ft_strlen(s);
+	result = (char *)malloc(sizeof(char) * (len + 1));
+	if (result != NULL)
+		return (0);
 	i = 0;
-	while (s[i])
+	while (i < len)
 	{
-		change_s[i] = (*f)(i, s[i]);
+		result[i] = f(i, s[i]);
 		i++;
 	}
-	change_s[i] = '\0';
-	return (change_s);
+	result[len] = '\0';
+	return (result);
 }

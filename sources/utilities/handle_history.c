@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/30 21:13:28 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/30 21:28:14 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 20:22:34 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/28 13:43:57 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	handle_history(int keycode)
 	else if (keycode == ARROW_DOWN && handle_history_next())
 		return ;
 	delete_line();
-	print_PS();
+	print_ps();
 	if (g_sh.history->edit_cmd)
 		g_sh.line = g_sh.history->edit_cmd;
 	else

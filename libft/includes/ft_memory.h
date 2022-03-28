@@ -5,26 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/26 15:43:17 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/30 22:46:00 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:23:10 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:23:11 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MEMORY_H
 # define FT_MEMORY_H
 
-#include <stdlib.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdarg.h>
+# include <limits.h>
 
-void	ft_bzero(void *s, size_t n);
-void	*ft_calloc(size_t count, size_t size);
-void	*ft_free_ret(void *target, void *ret);
-void	ft_free(void *target);
+# include "libft.h"
+
 int		ft_malloc(void **dst, size_t size);
-void	*ft_memccpy(void *destination, const void *source, int c, size_t n);
+void	*ft_memset(void *dest, int c, size_t n);
+void	ft_bzero(void *s, size_t n);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
+void	*ft_memccpy(void *dest, const void *src, int c, size_t n);
+void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
-void	*ft_memcpy(void *destination, const void *source, size_t n);
-void	*ft_memmove(void *dst, const void *src, size_t len);
-void	*ft_memset(void *b, int c, size_t len);
+void	*ft_calloc(size_t nmemb, size_t size);
+void	ft_free(void *target);
+void	ft_none(void *target);
+void	*ft_free_ret(void *target, void *ret);
 
 #endif

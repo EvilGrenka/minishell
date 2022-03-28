@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 22:04:20 by rnoriko           #+#    #+#             */
-/*   Updated: 2021/10/20 02:31:10 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:27:59 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/28 12:18:23 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	ft_memset(s, 0, n);
+	ft_memset(s, '\0', n);
 }

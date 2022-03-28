@@ -5,54 +5,59 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/27 14:39:47 by rnoriko           #+#    #+#             */
-/*   Updated: 2021/10/20 16:56:38 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:30:36 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:30:37 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	absolute_value(int nbr)
+static size_t	ft_count_digist(int n)
 {
-	if (nbr < 0)
-		return (-nbr);
-	return (nbr);
-}
+	size_t	count;
 
-static int	get_len(int nbr)
-{
-	int	len;
-
-	len = 0;
-	if (nbr <= 0)
-		++len;
-	while (nbr)
+	count = 0;
+	while (n)
 	{
-		++len;
-		nbr = nbr / 10;
+		n /= 10;
+		count++;
 	}
-	return (len);
+	return (count);
 }
 
-char	*ft_itoa(int nbr)
+static void	ft_write_nbrber(char *dest, unsigned int n)
 {
-	char	*result;
-	int		len;
-
-	len = get_len(nbr);
-	result = malloc(sizeof(char) * (len + 1));
-	if (!result)
-		return (NULL);
-	result[len] = '\0';
-	if (nbr < 0)
-		result[0] = '-';
-	else if (nbr == 0)
-		result[0] = '0';
-	while (nbr)
+	if (n < 10)
+		*dest = n + '0';
+	else
 	{
-		--len;
-		result[len] = absolute_value(nbr % 10) + '0';
-		nbr = nbr / 10;
+		*dest = n % 10 + '0';
+		ft_write_nbrber(dest - 1, n / 10);
+	}
+}
+
+char	*ft_itoa(int n)
+{
+	unsigned int	nbr;
+	char			*result;
+	size_t			len;
+
+	nbr = n;
+	if (n < 0)
+		nbr = -n;
+	if (n == 0)
+		return (ft_strdup("0"));
+	else
+	{
+		len = ft_count_digist(n);
+		((n < 0) && (++len));
+		result = (char *)malloc(sizeof(char) * (len + 1));
+		if (result == NULL)
+			return (0);
+		ft_write_nbrber((result + len - 1), nbr);
+		if (n < 0)
+			*result = '-';
+		result[len] = '\0';
 	}
 	return (result);
 }

@@ -5,31 +5,37 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/22 16:45:19 by rnoriko           #+#    #+#             */
-/*   Updated: 2021/10/20 05:14:35 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:29:34 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:29:35 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	const unsigned char	*local_src;
-	unsigned char		*local_dst;
+	unsigned char		*dp;
+	const unsigned char	*sp;
 
-	local_src = src;
-	local_dst = dst;
-	if (local_src == local_dst || len == 0)
-		return (dst);
-	if (local_dst < local_src)
-		while (len--)
-			*local_dst++ = *local_src++;
+	if (!dest && !src)
+		return (0);
+	if (dest > src)
+	{
+		dp = dest + n;
+		sp = src + n;
+		while (n-- > 0)
+		{
+			*--dp = *--sp;
+		}
+	}
 	else
 	{
-		local_dst += len;
-		local_src += len;
-		while (len--)
-			*--local_dst = *--local_src;
+		dp = dest;
+		sp = src;
+		while (n-- > 0)
+		{
+			*dp++ = *sp++;
+		}
 	}
-	return (dst);
+	return (dest);
 }

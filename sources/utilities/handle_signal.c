@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/30 21:20:25 by rnoriko           #+#    #+#             */
-/*   Updated: 2022/01/30 21:21:40 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 20:22:47 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/28 13:44:27 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	handle_sigint(int sig)
 		ft_free(g_sh.line);
 		g_sh.line = NULL;
 		if (!g_sh.isps2)
-			print_PS1();
+			print_ps1();
 	}
 	if (g_sh.read_fd > 0)
 	{

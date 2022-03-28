@@ -5,20 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/29 13:44:31 by rnoriko           #+#    #+#             */
-/*   Updated: 2021/05/01 00:34:11 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:26:00 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:26:01 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+** ft_lstdelone - The element to free.
+** The address of the function used to delete the content.
+*/
+
 void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	if (lst)
-	{
-		if (del && lst->content)
-			(del)(lst->content);
-		free(lst);
-		lst = NULL;
-	}
+	del(lst->content);
+	free(lst);
 }

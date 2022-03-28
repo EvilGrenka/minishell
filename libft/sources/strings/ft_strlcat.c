@@ -5,29 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/25 12:47:19 by rnoriko           #+#    #+#             */
-/*   Updated: 2021/10/20 04:00:33 by rnoriko          ###   ########.fr       */
+/*   Created: 2022/03/27 19:32:01 by rnoriko           #+#    #+#             */
+/*   Updated: 2022/03/27 19:32:03 by rnoriko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *destination, const char *source, size_t dstsize)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	size_t	i;
-	size_t	j;
-	size_t	len_dst;
+	size_t	destlen;
+	size_t	srclen;
 
-	len_dst = ft_strlen(destination);
-	i = len_dst;
-	j = 0;
-	if (dstsize > 0 && len_dst < dstsize - 1)
+	srclen = ft_strlen(src);
+	destlen = ft_strlen(dest);
+	((destlen > size) && (destlen = size));
+	if (destlen == size)
+		return (size + srclen);
+	if (srclen < size - destlen)
 	{
-		while (source[j] && len_dst + j < dstsize - 1)
-			destination[i++] = source[j++];
-		destination[i] = '\0';
+		ft_memcpy(dest + destlen, src, srclen);
+		dest[destlen + srclen] = '\0';
 	}
-	if (len_dst >= dstsize)
-		len_dst = dstsize;
-	return (ft_strlen(source) + len_dst);
+	else
+	{
+		ft_memcpy(dest + destlen, src, size - destlen - 1);
+		dest[size - 1] = '\0';
+	}
+	return (destlen + srclen);
 }

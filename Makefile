@@ -6,7 +6,7 @@
 #    By: rnoriko <rnoriko@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/26 17:03:44 by rnoriko           #+#    #+#              #
-#    Updated: 2022/01/31 02:53:58 by rnoriko          ###   ########.fr        #
+#    Updated: 2022/03/28 12:18:15 by rnoriko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ HEADERS = $(addprefix $(INC_DIR)/, \
 	cursor.h  \
 	envp.h  \
 	execution.h  \
+	minishell_type.h \
 	minishell.h \
 	parse.h \
 	utilities.h	\
@@ -71,30 +72,30 @@ PARSE_SRC = $(addprefix $(PARSE_DIR)/,	\
 	is_wildcard.c \
 	lexical_analyzer.c  \
 	normalize.c \
-	parse_args.c \
-	parse_cmds.c \
+	parse_arg.c \
+	parse_cmd.c \
 	parse_line.c  \
 	parse_utilities.c  \
 	print_AST.c \
 	syntax_analyzer.c \
 	syntax_AST.c  \
-	syntax_cmds.c  \
+	syntax_cmd.c  \
 	tokenizer.c \
 )
 
 EXECUTION_DIR = $(SRC_DIR)/execution
 EXECUTION_SRC = $(addprefix $(EXECUTION_DIR)/,	\
 	builtin_parser.c  \
-	execution_cmds.c  \
-	execution_tree_parser.c  \
+	exec_cmd.c  \
+	exec_tree_parser.c  \
 	fork.c  \
-	free_execution.c \
-	ft_cmds.c  \
+	free_exec.c \
+	ft_cmd.c  \
 	ft_error.c  \
 	handle_status.c \
 	heredoc.c \
-	make_cmds.c  \
-	parse_t_cmds.c \
+	make_cmd.c  \
+	parse_t_cmd.c \
 	pipe.c  \
 	redirection.c \
 )
@@ -156,11 +157,12 @@ HEADERS_BONUS = $(addprefix $(INC_DIR_BONUS)/, \
 	envp_bonus.h  \
 	execution_bonus.h  \
 	minishell_bonus.h \
+	minishell_type_bonus.h \
 	parse_bonus.h \
 	utilities_bonus.h	\
 )
 
-UTILITIES_DIR_BONUS = $(SRC_DIR_BONUS)/utilities_bonus
+UTILITIES_DIR_BONUS = $(SRC_DIR_BONUS)/utilities
 UTILITIES_SRC_BONUS = $(addprefix $(UTILITIES_DIR_BONUS)/, \
 	get_line_bonus.c  \
 	getch_bonus.c \
@@ -171,7 +173,7 @@ UTILITIES_SRC_BONUS = $(addprefix $(UTILITIES_DIR_BONUS)/, \
 	print_PS_bonus.c  \
 )
 
-CURSOR_DIR_BONUS = $(SRC_DIR_BONUS)/cursor_bonus
+CURSOR_DIR_BONUS = $(SRC_DIR_BONUS)/cursor
 CURSOR_SRC_BONUS = $(addprefix $(CURSOR_DIR_BONUS)/, \
 	clear_line_bonus.c  \
 	cursor_ctrl_left_bonus.c  \
@@ -183,41 +185,41 @@ CURSOR_SRC_BONUS = $(addprefix $(CURSOR_DIR_BONUS)/, \
 	putchar_tc_bonus.c  \
 )
 
-PARSE_DIR_BONUS = $(SRC_DIR_BONUS)/parse_bonus
+PARSE_DIR_BONUS = $(SRC_DIR_BONUS)/parse
 PARSE_SRC_BONUS = $(addprefix $(PARSE_DIR_BONUS)/,	\
 	free_AST_bonus.c  \
 	is_wildcard_bonus.c \
 	lexical_analyzer_bonus.c  \
 	normalize_bonus.c \
-	parse_args_bonus.c \
-	parse_cmds_bonus.c \
+	parse_arg_bonus.c \
+	parse_cmd_bonus.c \
 	parse_line_bonus.c  \
 	parse_utilities_bonus.c  \
 	print_AST_bonus.c \
 	syntax_AST_bonus.c  \
 	syntax_analyzer_bonus.c \
-	syntax_cmds_bonus.c  \
+	syntax_cmd_bonus.c  \
 	tokenizer_bonus.c \
 )
 
-EXECUTION_DIR_BONUS = $(SRC_DIR_BONUS)/execution_bonus
+EXECUTION_DIR_BONUS = $(SRC_DIR_BONUS)/execution
 EXECUTION_SRC_BONUS = $(addprefix $(EXEC_DIR_BONUS)/,	\
 	builtin_parser_bonus.c  \
-	execution_cmds_bonus.c  \
-	execution_tree_parser_bonus.c  \
+	exec_cmd_bonus.c  \
+	exec_tree_parser_bonus.c  \
 	fork_bonus.c  \
-	free_execution_bonus.c \
-	ft_cmds_bonus.c  \
+	free_exec_bonus.c \
+	ft_cmd_bonus.c  \
 	ft_error_bonus.c  \
 	handle_status_bonus.c \
 	heredoc_bonus.c \
-	make_cmds_bonus.c  \
-	parse_t_cmds_bonus.c \
+	make_cmd_bonus.c  \
+	parse_t_cmd_bonus.c \
 	pipe_bonus.c  \
 	redirection_bonus.c \
 )
 
-ENVP_DIR_BONUS = $(SRC_DIR_BONUS)/envp_bonus
+ENVP_DIR_BONUS = $(SRC_DIR_BONUS)/envp
 ENVP_SRC_BONUS = $(addprefix $(ENVP_DIR_BONUS)/, \
 	get_envp_bonus.c  \
 	get_envp_value_bonus.c  \
@@ -225,7 +227,7 @@ ENVP_SRC_BONUS = $(addprefix $(ENVP_DIR_BONUS)/, \
 	set_envp_bonus.c  \
 )
 
-BUILTIN_DIR_BONUS = $(SRC_DIR_BONUS)/builtin_bonus
+BUILTIN_DIR_BONUS = $(SRC_DIR_BONUS)/builtin
 BUILTIN_SRC_BONUS = $(addprefix $(BUILTIN_DIR_BONUS)/,	\
 	export_sort_bonus.c \
 	ft_cd_bonus.c \
